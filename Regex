@@ -1,0 +1,17 @@
+import re
+
+filename = '1604919547_4tm-01-1599476037.129068467.ass'
+
+
+# Убрать шапку и добавить  брейк
+with open(filename, "r+",encoding='utf-8') as f:
+    file = f.readlines()[18:]
+    with open('new1.txt','w',encoding='utf-8') as ff:
+        for i in file:
+            ff.write("%s\n" % i)
+            with open('new1.txt','a+',encoding='utf-8') as fff:
+                fff.write('\n')
+
+with open('new1.txt','w+',encoding='utf-8') as r:
+    content = r.read()
+    r.write(re.sub(r'Dialogue:(.*?)Default,(.*),,(.*?)\n','$2:$3\n',content))
