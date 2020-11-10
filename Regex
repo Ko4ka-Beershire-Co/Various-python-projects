@@ -1,17 +1,23 @@
 import re
 
 filename = '1604919547_4tm-01-1599476037.129068467.ass'
-
+new_file = '2.txt'
 
 # Убрать шапку и добавить  брейк
-with open(filename, "r+",encoding='utf-8') as f:
-    file = f.readlines()[18:]
-    with open('new1.txt','w',encoding='utf-8') as ff:
+with open(filename, "r+", encoding='utf-8') as f:
+    file = f.readlines()[17:]
+    with open(new_file, 'w', encoding='utf-8') as ff:
         for i in file:
             ff.write("%s\n" % i)
-            with open('new1.txt','a+',encoding='utf-8') as fff:
+            with open(new_file, 'a+', encoding='utf-8') as fff:
                 fff.write('\n')
-
-with open('new1.txt','w+',encoding='utf-8') as r:
+# Мув 1
+with open(new_file, 'r+', encoding='utf-8') as r:
     content = r.read()
-    r.write(re.sub(r'Dialogue:(.*?)Default,(.*),,(.*?)\n','$2:$3\n',content))
+    with open(new_file, 'w', encoding='utf-8') as rr:
+        content = rr.write(re.sub(r'Dialogue:(.*?)Default,(.*),,(.*?)\n', '\\2:\\3\\n', content))
+# Мув 2
+with open(new_file, 'r+', encoding='utf-8') as rrr:
+   content = rrr.read()
+   with open(new_file, 'w', encoding='utf-8') as rrrr:
+    rrrr.write(re.sub(r'(.*?) .,..............:(.*?)\n', '\\1: \\2', content))
