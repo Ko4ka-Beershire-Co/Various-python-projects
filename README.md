@@ -1,2 +1,2 @@
 # Various-python-projects
-My python projects created either in my spare time 
+My python projects created in my spare time 
