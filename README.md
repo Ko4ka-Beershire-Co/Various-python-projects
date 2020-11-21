@@ -1,7 +1,7 @@
 # Various-python-projects
 My python projects created in my spare time 
 
-Sorter structure:
+# Sorter structure (edit to view):
 The target directory is to contain:
 
 -Folder2 (.ass folder)
