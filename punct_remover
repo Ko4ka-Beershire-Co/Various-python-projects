@@ -1,0 +1,34 @@
+import re
+import os
+
+run = 'C:/Users/Alex/Desktop/Folder'
+
+def rem_punct(dir_name):
+
+    for filename in os.listdir(dir_name):
+
+        full_path = str(dir_name) + '/' # что os, что os.path в итирации любят абсолютный путь(((
+
+        new_file = filename[:-4] + 'new.ass'
+
+        # читаю тело (не .readlines())
+        with open(full_path + filename, "r+", encoding='utf-8') as f:
+            body_old = f.read()
+            body = re.sub(r'(.*).Events].', '', body_old, re.MULTILINE, re.DOTALL) # отдельно тело
+            # читаю шапку (не .readlines())
+            with open(full_path + filename, "r+", encoding='utf-8') as f:
+                top_old = f.read()
+                top = re.sub(r'.Events](.*)', '[Events]', top_old, re.MULTILINE, re.DOTALL) # отдельно шапка
+                # Убираю пунктуацию из body 5 раз через loop
+                j = 0
+                while j < 1:
+                    body = re.sub(r'(.*)[^\w\s](.*)', '\1\2', body, re.MULTILINE)
+                    body = re.sub(r'Effect Text', 'Effect, Text', body, re.MULTILINE)
+                    body = re.sub(r"0000,0000,0000,([^,])", "0000,0000,0000,,\1", body, re.MULTILINE)
+                    j = j + 1
+
+                    # Клею шапку и тело
+                    with open(full_path + new_file, 'a+', encoding='utf-8') as fff:
+                        fff.write(top + body[23:]) #CR FT SOH STX CR LF Removal
+
+rem_punct(run)
