@@ -34,8 +34,9 @@ def rem_punct(dir_name):
                     # Клею шапку и тело
                 with open(full_path + new_file, 'a+', encoding='utf-8') as fff:
                     fff.write(top + body) #CR FT SOH STX CR LF Removal
-        # Удаляю первый файл
-        #os.remove(full_path + filename)
+        # Удаляю первый файл и переименовываю второй
+        os.remove(full_path + filename)
+        os.rename(full_path + new_file, full_path + filename)
 
 
 # итиративная для папок 00-nn
@@ -54,5 +55,5 @@ while start < stop:
         run = str(run) + '/' + str(sub_dir)
 
         rem_punct(run)
-
-
+    
+    start = start + 1
