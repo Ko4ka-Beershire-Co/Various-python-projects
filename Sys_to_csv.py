@@ -32,4 +32,4 @@ df = pandas.read_csv('temp.csv')
 # Delete first n
 df = df.drop(['1','2','3','Unnamed: 12'], axis=1)
 df.to_csv('sclite.csv', index=False)
-#os.remove(str(sys.path[0]) + '\\temp.csv')
+os.remove(str(sys.path[0]) + '\\temp.csv')
