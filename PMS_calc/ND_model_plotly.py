@@ -3,6 +3,7 @@
 
 import numpy as np
 import plotly.graph_objects as go
+import plotly.express as plt
 import scipy.stats as stats
 
 # Cycle Distribution
@@ -24,19 +25,21 @@ X = stats.truncnorm.rvs(
     (lower - mu) / sigma, (upper - mu) / sigma, loc=mu, scale=sigma, size=n)
 Y = normal(X, mu, sigma)
 
+# Plot: ND allied to Cycle will assume conventional form, even when truncated
+# fig = plt.scatter(x=X, y=Y)
+# fig.show()
+
 # Duration Array
 
 d_X = stats.truncnorm.rvs(
     (d_lower - d_mu) / d_sigma, (d_upper - d_mu) / d_sigma, loc=d_mu, scale=d_sigma, size=d_n)
 d_Y = normal(d_X, d_mu, d_sigma)
 
+# Plot: ND allied to Duration will not assume conventional form as MU has a +1 displacement
 # fig = plt.scatter(x=d_X, y=d_Y)
 # fig.show()
 
 Z = Y * d_Y
-# print(Z)
-#   Duration_array = [d_X, d_Y]
-#   print(Duration_array)
 
 # X Y Z as 1D-array
 fig = go.Figure(data=[go.Mesh3d(x=X,
