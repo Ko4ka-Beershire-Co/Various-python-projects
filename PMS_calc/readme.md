@@ -14,7 +14,7 @@ z = P(Cycle=y)*P(Duration=y)
 
 Future ideas: 
 
-Bayesian logic for window update
+Bayesian approach for window update
 
 Discrete bar-chart
 
