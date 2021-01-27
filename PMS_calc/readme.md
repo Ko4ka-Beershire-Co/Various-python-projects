@@ -11,3 +11,11 @@ y - MS duration
 z = P(Cycle=y)*P(Duration=y)
 
 # WTF am I doing with my life...
+
+Future ideas: 
+
+Bayesian logic for window update
+
+Discrete bar-chart
+
+Percentile tree
