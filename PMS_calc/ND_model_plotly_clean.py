@@ -1,6 +1,5 @@
 # When I forget the math behind this shit: MU( utorrent letter) = mode, median; SIGMA( apple) = standard dev
 
-
 import numpy as np
 import plotly.graph_objects as go
 import plotly.express as plt
@@ -9,6 +8,7 @@ import scipy.stats as stats
 
 # Dist as class
 class Process:
+
     def __init__(self, mu, sigma, n, lower, upper):
         self.mu = mu
         self.sigma = sigma
@@ -20,18 +20,16 @@ class Process:
 # Cycle Distribution
 Cycle = Process(28, 3, 100000, 21, 35)
 
-
 # Duration Distribution
 duration = Process(5, 1, 100000, 2, 7)
 
 
-def scatter_plot(X, Y):  # if needed
-    fig = plt.scatter(x=X, y=Y)
+def scatter_plot(array, no1, no2):  # if needed
+    fig = plt.scatter(x=array[no1], y=array[no2])
     fig.show()
 
 
 def create_array_cont():
-
     def normal(x, mu, sigma):
         return (2. * np.pi * sigma ** 2.) ** -.5 * np.exp(-.5 * (x - mu) ** 2. / sigma ** 2.)
 
@@ -43,7 +41,8 @@ def create_array_cont():
     Y = normal(X, Cycle.mu, Cycle.sigma)
 
     # Plot: ND allied to Cycle will assume conventional form, even when truncated
-
+    # fig = plt.scatter(x=X, y=Y)
+    # fig.show()
 
     # Duration Array
 
@@ -56,7 +55,7 @@ def create_array_cont():
 
     Z = Y * d_Y
 
-    return X, d_X, Z
+    return X, d_X, Z, d_Y, Y
 
 
 def plot_cont(array):
@@ -90,3 +89,6 @@ def plot_cont(array):
 
 
 plot_cont(create_array_cont())
+
+#   scatter_plot(create_array_cont(), 0, 4)
+#   scatter_plot(create_array_cont(), 1, 3)
