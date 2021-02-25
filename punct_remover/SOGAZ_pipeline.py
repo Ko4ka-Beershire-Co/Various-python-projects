@@ -22,7 +22,7 @@ def rem_punct(dir_name): # Я забыл как оно работает, гла�
                 top = re.sub(r'Audio File:(.*)_(.*).ogg', 'Audio File: ' + filename[:-4] + '.wav', top)  # убрать суффикс для .ogg (косяк с .wav)
                 # Убираю пунктуацию из body 5 раз через loop
                 j = 0
-                while j < 5:
+                while j < 8:
                     # r'(.*)[^\w\s](.*)' - внизу метчу все, кроме ?
                     body = re.sub(r'(.*)[.,!?:;(){}](.*)', "\\1\\2", body, 0, re.MULTILINE) # 0 - вводит глобалки (походу)
                     body = re.sub(r'Effect Text', 'Effect, Text', body, 0, re.MULTILINE)
@@ -54,18 +54,21 @@ def split_and_string(dir_name):  # Создает 2 txt-файла из 1 ass, �
             L = re.sub(r'(.*)1,0000,0000,0000,(.*)(\n*)', "\\2", L, 0, re.MULTILINE)
             L = re.sub(r',', " ", L, 0, re.MULTILINE)
             L = re.sub(r'.*\n', "Sentence =", L, 0, re.MULTILINE)
+            L = re.sub(r'Sentence = ', "Sentence=", L, 0, re.MULTILINE)
             print('Регулярки работают---|')
             #  Для R канала 01
             R = re.sub(r'(.*)1,0000,0000,0000,,(.*)', "", old_LR, 0, re.MULTILINE)
             R = re.sub(r'(.*)0,0000,0000,0000,(.*)(\n*)', "\\2", R, 0, re.MULTILINE)
             R = re.sub(r',', " ", R, 0, re.MULTILINE)
-            R = re.sub(r'.*\n', "Sentence =", R, 0, re.MULTILINE)
+            R = re.sub(r'.*\n\n', "Sentence =", R, 0, re.MULTILINE)
+            R = re.sub(r'Sentence = ', "Sentence=", R, 0, re.MULTILINE)
             print('Регулярки работают---|')
-            with open(full_path + filename[:-4] + 'L.txt', "a", encoding='utf-8',) as L_txt:
+
+            with open(full_path + filename[:-4] + 'l.txt', "a", encoding='utf-8',) as L_txt:
                 L_txt.write(L)
                 L_txt.close()
                 print('L создан------|')
-            with open(full_path + filename[:-4] + 'R.txt', "a", encoding='utf-8') as R_txt:
+            with open(full_path + filename[:-4] + 'r.txt', "a", encoding='utf-8') as R_txt:
                 R_txt.write(R)
                 R_txt.close()
                 print('R создан------|')
