@@ -55,6 +55,7 @@ def split_and_string(dir_name):  # Создает 2 txt-файла из 1 ass, �
             L = re.sub(r',', " ", L, 0, re.MULTILINE)
             L = re.sub(r'.*\n', "Sentence =", L, 0, re.MULTILINE)
             L = re.sub(r'Sentence = ', "Sentence=", L, 0, re.MULTILINE)
+            L = re.sub(r'(.*)', "\\1\n", L, 0, re.MULTILINE)
             print('Регулярки работают---|')
             #  Для R канала 01
             R = re.sub(r'(.*)1,0000,0000,0000,,(.*)', "", old_LR, 0, re.MULTILINE)
@@ -62,6 +63,7 @@ def split_and_string(dir_name):  # Создает 2 txt-файла из 1 ass, �
             R = re.sub(r',', " ", R, 0, re.MULTILINE)
             R = re.sub(r'.*\n\n', "Sentence =", R, 0, re.MULTILINE)
             R = re.sub(r'Sentence = ', "Sentence=", R, 0, re.MULTILINE)
+            R = re.sub(r'(.*)', "\\1\n", R, 0, re.MULTILINE)
             print('Регулярки работают---|')
 
             with open(full_path + filename[:-4] + 'l.txt', "a", encoding='utf-8',) as L_txt:
