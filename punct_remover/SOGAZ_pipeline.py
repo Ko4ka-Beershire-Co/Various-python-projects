@@ -58,6 +58,7 @@ def split_and_string(dir_name):  # Создает 2 txt-файла из 1 ass, �
             L = re.sub(r'.*\n', "Sentence =", L, 0, re.MULTILINE)
             L = re.sub(r'Sentence = ', "Sentence=", L, 0, re.MULTILINE)
             L = re.sub(r'Sentence =Sentence=', "Sentence=", L, 0, re.MULTILINE)  # Канальный хэндл
+            L = re.sub(r'Sentence =Sentence=', "Sentence=", L, 0, re.MULTILINE)  # Канальный хэндл
             # L = re.sub(r'(.*)', "\\1\r", L, 0, re.MULTILINE)
             print('Регулярки работают---|')
             #  Для R канала 01
@@ -66,6 +67,7 @@ def split_and_string(dir_name):  # Создает 2 txt-файла из 1 ass, �
             R = re.sub(r',', " ", R, 0, re.MULTILINE)
             R = re.sub(r'.*\n', "Sentence =", R, 0, re.MULTILINE)
             R = re.sub(r'Sentence = ', "Sentence=", R, 0, re.MULTILINE)
+            R = re.sub(r'Sentence =Sentence=', "Sentence=", R, 0, re.MULTILINE)  # Канальный хэндл
             R = re.sub(r'Sentence =Sentence=', "Sentence=", R, 0, re.MULTILINE)  # Канальный хэндл
             # R = re.sub(r'(.*)', "\\1\r", R, 0, re.MULTILINE)
             print('Регулярки работают---|')
