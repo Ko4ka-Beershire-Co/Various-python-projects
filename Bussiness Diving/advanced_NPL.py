@@ -25,14 +25,16 @@ snowball = SnowballStemmer(language="english")
 json_file = 'buffer.json'
 TOP = 10  # кол-во токенов для определения семантики
 
+
 with open(json_file, encoding='utf-8') as f:  # Допустим, открыли JSON как словарь
     data = f.read()
     comment_list = re.findall(".*\"content\":.(.*)", data, re.MULTILINE)
 
     value_list = re.findall(".*\"thumbsUpCount\":.(.\d*)", data, re.MULTILINE)
     dictionary = dict(zip(comment_list, value_list))
-
+    step = 0
     for line in comment_list:  # для каждого коммента вывести топ Х слов
+        step += 1
         split_it = line.split()  # превращаю строку в массив [слово, слово, ...]
         j = len(split_it)
         i = 0
@@ -46,14 +48,13 @@ with open(json_file, encoding='utf-8') as f:  # Допустим, открыли
                 i += 1
         # print(split_it)
         z = Counter(split_it).most_common(TOP)  # вывожу массив [(словоформа1, разы), ..., (словоформаTOP, разы)]
-        #print(z)
+        # print(z)
         z_list = [list(elem) for elem in z]
 
-        step = 0
-        for n in z_list: # использую лайки в качестве подтверждения правдивости интента
-            step += 1
+        for n in z_list:  # использую лайки в качестве подтверждения правдивости интента
+
             for m in n:
-                #print(n[1])
-                n[1] = n[1] + int(value_list[step-1])
+                # print(n[1])
+                n[1] = n[1] + int(value_list[step - 1])
+                
         print(z_list)
-        
