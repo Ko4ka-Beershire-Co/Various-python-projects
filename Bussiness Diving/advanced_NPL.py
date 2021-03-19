@@ -26,7 +26,6 @@ json_file = 'buffer.json'
 TOP = 10  # кол-во токенов для определения семантики
 
 with open('corpus.txt', 'w+', encoding='utf-8') as c:
-
     with open(json_file, encoding='utf-8') as f:  # Допустим, открыли JSON как словарь
         data = f.read()
         comment_list = re.findall(".*\"content\":.(.*)", data, re.MULTILINE)
@@ -56,19 +55,18 @@ with open('corpus.txt', 'w+', encoding='utf-8') as c:
 
                 for m in n:
                     # print(n[1])
-                    n[1] = n[1] + int(value_list[step - 1])
-                    n[0] = n[0] + ' '
-                    c.writelines(n[0]*n[1])
-                #c.writelines(str(n))
+                    q = (n[1] + int(value_list[step - 1]))/2
+                    w = n[0] + ' '
+                    c.writelines(w * round(q))
+                # c.writelines(str(n))
             print(z_list)
 
 
-def corpus_creator(list_of_lists, drop):
+"""def corpus_creator(list_of_lists, drop):
     corpus = []
     with open(drop, "w+", encoding='utf-8') as d:
         for i in list_of_lists:
             corpus.append(i[0] * i[1])
-        d.writelines(corpus)
-
+        d.writelines(corpus)"""
 
 
