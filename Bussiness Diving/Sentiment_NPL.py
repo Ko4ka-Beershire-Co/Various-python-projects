@@ -69,7 +69,6 @@ def create_corpus():
 
 
 def corpus_counter(corpus_file, top):
-
     with open(corpus_file, 'r+', encoding='utf-8') as c:
         data_set = c.read()
         split_it = data_set.split()
@@ -80,4 +79,6 @@ def corpus_counter(corpus_file, top):
         print(most_occur)
 
 
+# Fire it up!
+create_corpus()
 corpus_counter('corpus.txt', 100)
