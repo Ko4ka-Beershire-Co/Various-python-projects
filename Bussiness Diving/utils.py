@@ -35,10 +35,13 @@ while i < j:
         i += 1
 
 print(h)
-"""counter = 0
-for i in h:
-    counter += 1
-    if i.lower() in words_to_ignore:
-        print(i)
-        h.append()
-print(h)"""
+
+def corpus_counter(corpus_file, top):
+    with open(corpus_file, 'r+', encoding='utf-8') as c:
+        data_set = c.read()
+        split_it = data_set.split()
+
+        # input values and their respective counts.
+        most_occur = Counter(split_it).most_common(top)
+
+        print(most_occur)
