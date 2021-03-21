@@ -29,11 +29,14 @@ with open('corpus.txt', 'w+', encoding='utf-8') as c:
     with open(json_file, encoding='utf-8') as f:  # Допустим, открыли JSON как словарь
         data = f.read()
         comment_list = re.findall(".*\"content\":.(.*)", data, re.MULTILINE)
+        #comment_list = re.sub(r"\'|\"|\\", '', comment_list, 0, re.MULTILINE)
 
         value_list = re.findall(".*\"thumbsUpCount\":.(.\d*)", data, re.MULTILINE)
         dictionary = dict(zip(comment_list, value_list))
         step = 0
         for line in comment_list:  # для каждого коммента вывести топ Х слов
+            line = re.sub(r"\'|\"|\\\\", '', line, 0, re.MULTILINE)
+            line = re.sub(r"[,.:]", "", line, 0)
             step += 1
             split_it = line.split()  # превращаю строку в массив [слово, слово, ...]
             j = len(split_it)
@@ -68,5 +71,3 @@ with open('corpus.txt', 'w+', encoding='utf-8') as c:
         for i in list_of_lists:
             corpus.append(i[0] * i[1])
         d.writelines(corpus)"""
-
-
