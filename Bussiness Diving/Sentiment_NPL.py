@@ -4,7 +4,7 @@ import re
 from collections import Counter
 import nltk
 
-nltk.download('stopwords')
+# nltk.download('stopwords')
 # from nltk.corpus import stopwords
 from nltk.stem import SnowballStemmer
 
