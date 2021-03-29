@@ -4,6 +4,8 @@ import shutil
 
 
 error_file_path = "C://Users/Alex/Desktop/Python/Markup/Error_finder/Errors"
+audio = "C://Users/Alex/Desktop/Python/Markup/Error_finder/Audio"
+target = "C://Users/Alex/Desktop/Python/Markup/Error_finder/Target"
 # script_path = "C://Users/Alex/Desktop/Python/Markup/Error_finder"
 file_names = []
 
@@ -22,5 +24,5 @@ def find_audio(list, folder, target):
         shutil.move(folder + '/' + i, target)
 
 if __name__ == '__main__':
-    
-    find_audio()
+
+    find_audio(file_names,audio,target)
