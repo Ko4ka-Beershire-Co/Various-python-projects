@@ -1,5 +1,7 @@
 import re
 import os
+import shutil
+
 
 error_file_path = "C://Users/Alex/Desktop/Python/Markup/Error_finder/Errors"
 # script_path = "C://Users/Alex/Desktop/Python/Markup/Error_finder"
@@ -13,3 +15,12 @@ for filename in os.listdir(error_file_path):
         file_names.append(set(error_list))
 
 print(file_names)
+
+def find_audio(list, folder, target):
+
+    for i in list:
+        shutil.move(folder + '/' + i, target)
+
+if __name__ == '__main__':
+    
+    find_audio()
