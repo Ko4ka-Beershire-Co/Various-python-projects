@@ -14,14 +14,15 @@ for filename in os.listdir(error_file_path):
     with open(error_file_path + '/' + filename, 'r+', encoding='utf-8', ) as f:
         body = f.read()
         error_list = re.findall(r'\"filename\": \"(.*)\"', body, re.MULTILINE)
-        file_names.append(set(error_list))
+        file_names.append(list(set(error_list)))
 
 print(file_names)
 
 def find_audio(list, folder, target):
 
     for i in list:
-        shutil.move(folder + '/' + i, target)
+        for j in i:
+            shutil.move(folder + '/' + j, target)
 
 if __name__ == '__main__':
 
