@@ -23,16 +23,7 @@ for file in os.listdir(txt):
 
         for j in i:
             shutil.copy(audio + '/' + j + '.ogg', txt + '/' + file)
-
+            
+    file_names.clear()
 
 print(file_names)
-
-"""def find_audio(list, folder, target):
-
-    for i in list:
-        for j in i:
-            shutil.move(folder + '/' + j, target)
-
-if __name__ == '__main__':
-
-    find_audio(file_names,audio,target)"""
