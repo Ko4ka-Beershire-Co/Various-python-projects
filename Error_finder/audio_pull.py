@@ -19,7 +19,7 @@ for file in os.listdir(txt):
             audio_file_name = re.findall(r'Звонок.(.*)_', body, re.MULTILINE)
             file_names.append(list(set(audio_file_name)))
     # Pull audio
-    print(file_names)
+    #  print(file_names)
     for i in file_names:
 
         for j in i:
