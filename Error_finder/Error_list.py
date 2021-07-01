@@ -3,9 +3,9 @@ import os
 import shutil
 
 
-error_file_path = "C://Users/Alex/Desktop/Python/Markup/Error_finder/Errors"
-audio = "C://Users/Alex/Desktop/Python/Markup/Error_finder/Audio"
-target = "C://Users/Alex/Desktop/Python/Markup/Error_finder/Target"
+error_file_path = "C://Users/Alex/Desktop/Python/Markup/Error_finder/Errors"  # .json
+audio = "C://Users/Alex/Desktop/Python/Markup/Error_finder/Audio" # all audio files
+target = "C://Users/Alex/Desktop/Python/Markup/Error_finder/Target" # where do I put the missing files
 # script_path = "C://Users/Alex/Desktop/Python/Markup/Error_finder"
 file_names = []
 
