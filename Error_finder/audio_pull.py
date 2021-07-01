@@ -18,9 +18,11 @@ for file in os.listdir(txt):
             audio_file_name = re.findall(r'Звонок.(.*)_', body, re.MULTILINE)
             file_names.append(list(set(audio_file_name)))
     # Pull audio
+    print(file_names)
     for i in file_names:
-            
-            shutil.move(audio + '/' + i, txt + '/' + file)
+
+        for j in i:
+            shutil.copy(audio + '/' + j + '.ogg', txt + '/' + file)
 
 
 print(file_names)
