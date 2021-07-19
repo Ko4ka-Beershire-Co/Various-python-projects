@@ -46,4 +46,7 @@ def get_agent_extensions(audio):
         pair[1] = sorted_names[sorted_ext.index(pair[1])]
 
     print(k)
-get_agent_extensions(audio)
+
+if __name__ == "__main__":
+    
+    get_agent_extensions(audio)
