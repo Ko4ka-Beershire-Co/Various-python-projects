@@ -11,11 +11,10 @@ def get_agent_extensions(audio):
         extension = re.findall(r'_(.*?)-', filename)
         i.append(extension)
 
-    full_list = np.array(i).flatten()  # Transform 2D list into 1D
+    i = np.array(i).flatten()  # Transform 2D list into 1D
 
-    unique_list = print(set(full_list))  # Уникальные экстеншены
+    print(i)  # Все экстеншены
 
-    print(unique_list)
-    #print(full_list)
+    print(set(i))  # Уникальные экстеншены
 
 get_agent_extensions(audio)
