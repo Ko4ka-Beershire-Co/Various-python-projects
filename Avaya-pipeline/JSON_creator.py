@@ -23,11 +23,14 @@ def remove_ext(list):  # remove .ogg .wav etc
 
 def str_to_JSON(STR):
     STR_Full = '{"records": [' + STR[2:]
-    JSON = STR_Full[:-2]
+    JSON = STR_Full[:-2] + ']}'
+    JSON = re.sub(r"'",'"', JSON, 0, re.MULTILINE)
+    JSON = re.sub(r'}"',"", JSON, 0, re.MULTILINE)
+    JSON = re.sub(r'"{', "", JSON, 0, re.MULTILINE)
+
 
 
     return JSON
-
 
 # Lists
 file_location = 'C:/Users/Alex/Desktop/Python/pythonProject/report.xlsx'
@@ -59,7 +62,7 @@ format_unit = {
     "role_data": [
         {
             "role_id": 1,
-            "extension": "EXTENSION_MAP"
+            "agent_id": "EXTENSION_MAP"
         },
         {
             "role_id": 2,
