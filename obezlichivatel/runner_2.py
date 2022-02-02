@@ -5,8 +5,20 @@ import itertools
 import os
 import shutil
 
-dictionary = ['Михайловича', "могу услышать", "могу услышать", "Здравствуйте", "здравствуйте", "Компания", "меня зовут",
-              "Слушаю"]
+dictionary = ["для идентификации", "дату рождения", "назовите дату ", "уточните дату ", "дата рождения",
+              "дату рождению",
+              "это вы", "меня зовут", "здравствуйте", "звонок из компании", "из компании", "мани", "мен",
+              "добрый день",
+              "по какому номеру телефона", "можно связаться", "назовите полностью", "какие данные",
+              "какие персональные",
+              "контактные данные", "анкетные данные", "что менялось", "актуальные", "Дату рождения",
+              "Для идентификации", "Дату рождения",
+              "Назовите дату ", "Уточните дату ", "Дата рождения", "Дату рождению", "Это вы", "Меня зовут",
+              "Здравствуйте",
+              "Звонок из компании", "Из компании", "Мани", "Мен", "Добрый день", "По какому номеру телефона",
+              "Можно связаться", "Назовите полностью", "Какие данные", "Какие персональные", "Контактные данные",
+              "Анкетные данные", "Что менялось", "Актуальные", "паспорт", "Паспорт", "паспорта", "Паспорта", "адрес",
+              "Адрес"]
 
 
 def obezlichit(audio_path, output_path):
@@ -19,7 +31,7 @@ def obezlichit(audio_path, output_path):
         # lines to get timings from
         lines = []
         f_lines = []
-
+        q_lines = []
         for i in dictionary:
             body_processed = re.findall(f'.*?{i}', body, re.MULTILINE)
 
@@ -30,15 +42,18 @@ def obezlichit(audio_path, output_path):
 
                 lines.append(timing[0][2:])
 
-        for j in lines:
-            # print(j)
-            first = int(j[2:4]) * 60 * 1000 + int(j[5:7]) * 1000 + int(j[8:10]) * 10
+            else:
+                pass
 
-            second = int(j[13:15]) * 60 * 1000 + int(j[16:18]) * 1000 + int(j[19:21]) * 10
+            for j in lines:
+                # print(j)
+                first = int(j[2:4]) * 60 * 1000 + int(j[5:7]) * 1000 + int(j[8:10]) * 10
 
-            q_lines = [first, second]
+                second = int(j[13:15]) * 60 * 1000 + int(j[16:18]) * 1000 + int(j[19:21]) * 10
 
-        f_lines.append(q_lines)
+                q_lines = [first, second]
+
+            f_lines.append(q_lines)
 
         # Remove duplicates
 
@@ -92,16 +107,29 @@ def obezlichit(audio_path, output_path):
         # part1 = newAudio[0:t2]
         # part2 = newAudio[t1:]
 
-        exec(code_string+code_string_2)  # string 2 code
+        exec(code_string + code_string_2)  # string 2 code
 
-        #audio_file.export(output_path, format="mp3")  # Exports to a wav file in the current path.
+        # audio_file.export(output_path, format="mp3")  # Exports to a wav file in the current path.
 
         print('Done')
 
 
+def obezlichit_dobivka(audio_path, output_path, cut_sec):
+    for i in os.listdir(audio_path):
+        try:
+            audio_file = AudioSegment.from_mp3(audio_path + '/' + i)
+            JIC = audio_file[cut_sec * 1000:]
+            JIC.export(output_path + '/' + i, format="mp3")  # Exports to a wav file in the current path.
+            print(f'finalizing {i}')
+
+        except:
+            print(f'Oops, something went wrong with {i}... Skipping')
+            pass
+
+
 def itirate_in_folder(audio_path):
     counter = 1
-    for i in os.listdir(audio_path):
+    for i in os.listdir(audio_path)[::2]:
         obezlichit(audio_path + '/' + i, f'G:/Python/Markup/Audio_Pull/Obezlichivatel/Final/{counter}.mp3')
         print(f'{counter} done')
         counter += 1
@@ -113,6 +141,7 @@ def make_folder_content_lowercase(folder):
         os.rename(folder + '/' + i, folder + '/' + i.lower())
 
 
-
-make_folder_content_lowercase('G:/Python/Markup/Audio_Pull/Obezlichivatel/target')
-itirate_in_folder('G:/Python/Markup/Audio_Pull/Obezlichivatel/target')
+#make_folder_content_lowercase('G:/Python/Markup/Audio_Pull/Obezlichivatel/target')
+#itirate_in_folder('G:/Python/Markup/Audio_Pull/Obezlichivatel/target')
+obezlichit_dobivka('G:/Python/Markup/Audio_Pull/Obezlichivatel/Final',
+                   'G:/Python/Markup/Audio_Pull/Obezlichivatel/Done', 9)
